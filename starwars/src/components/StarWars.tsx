@@ -6,12 +6,20 @@ import Person, { PersonData } from './Person';
 
 const StarWars = ({  }) => {
   const [personResponse, setPersonResponse] = useState();
+  const [count, setCount] = useState(1);
 
   function retrievePerson() {
     (async () => {
       try {
         setPersonResponse(
-          await axios.get('https://swapi.co/api/people/1')
+          await axios.get(`https://swapi.co/api/people/${count}`)
+            // (() => {
+            //   let newCount
+            //   setCount(oldCount => newCount = oldCount);
+            //   return newCount;
+            // })()
+            // count
+          // }`);
         );
       } catch (e) {
         console.log(e);
@@ -19,7 +27,11 @@ const StarWars = ({  }) => {
     })();
   }
 
-  useEffect(retrievePerson, []);
+  useEffect(retrievePerson, [count]);
+
+  window.addEventListener('keydown', (e) => {
+    setCount(oldCount => oldCount + 1);
+  });
 
   return (
     <>
