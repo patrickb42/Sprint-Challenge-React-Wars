@@ -19,7 +19,7 @@ const StarWars = ({  }) => {
     })();
   }
 
-  useEffect(retrievePerson, [personResponse]);
+  useEffect(retrievePerson, []);
 
   return (
     <>

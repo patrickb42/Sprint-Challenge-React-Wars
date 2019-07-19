@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import { AxiosResponse } from 'axios';
+
+import Name from './Name';
 
 export interface PersonData {
   birth_year: string;
@@ -38,12 +39,10 @@ const Person = ({ response }: PersonProps) => {
     species,
     url,
   } = response.data;
-  console.log(`person response ${response.data}`);
 
   return (
     <>
-      <h1>{name}</h1>
-      <p>birth year: {birth_year}</p>
+      <Name>{name}</Name>
     </>
   );
 };
