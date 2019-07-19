@@ -13,13 +13,6 @@ const StarWars = ({  }) => {
       try {
         setPersonResponse(
           await axios.get(`https://swapi.co/api/people/${count}`)
-            // (() => {
-            //   let newCount
-            //   setCount(oldCount => newCount = oldCount);
-            //   return newCount;
-            // })()
-            // count
-          // }`);
         );
       } catch (e) {
         console.log(e);
