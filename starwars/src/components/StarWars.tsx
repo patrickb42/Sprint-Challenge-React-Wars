@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+
+import People from './People';
+import Person, { PersonData } from './Person';
 
 const StarWars = ({  }) => {
-  const getPeople = async () => {
-    const person = await axios.get('https://swapi.co/api/people/1');
-    console.log(person.data);
-  };
+  const [personResponse, setPersonResponse] = useState();
 
-  getPeople();
+  function retrievePerson() {
+    (async () => {
+      try {
+        setPersonResponse(
+          await axios.get('https://swapi.co/api/people/1')
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }
+
+  useEffect(retrievePerson, [personResponse]);
 
   return (
     <>
+      <Person response={personResponse} />
     </>
   );
 };
